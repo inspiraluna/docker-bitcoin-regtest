@@ -4,8 +4,7 @@ RUN apt-get update && \
 	apt-get install -y build-essential git && \
 	apt-get install automake -y && \
 	apt-get install libtool -y && \
-	apt-get install libtool pkg-config wget -y && \
-	apt-get install net-tools && \
+	apt-get install libtool pkg-config wget curl net-tools -y && \
 	apt-get install bsdmainutils libboost-all-dev libssl-dev libevent-dev -y
 
 workdir /tmp/build/bdb
@@ -24,7 +23,7 @@ workdir /tmp/build/namecoin-core
 #VOLUME ["/data/namecoin"]
 RUN  mkdir ~/.namecoin/
 #RUN printf "rpcuser=test\nrpcpassword=test\n" > /data/namecoin/namecoin.conf
-RUN printf "rpcuser=test\nrpcpassword=test\n" > ~/.namecoin/namecoin.conf
+RUN printf "rpcuser=test\nrpcpassword=test\nrpcallowip=0.0.0.0\n" > ~/.namecoin/namecoin.conf
 #COPY namecoin.conf /data/namecoin/namecoin.conf
 EXPOSE 18445 19445 18332 19332 
 CMD ["/usr/local/bin/namecoind", "regtest", "-printtoconsole"]
