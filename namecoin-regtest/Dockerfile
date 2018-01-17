@@ -28,6 +28,7 @@ workdir /tmp/build/bdb
 		ln -s /usr/include/db4.8/lib/* /usr/lib
 workdir /tmp/build/
 	RUN git clone --branch 'nc0.13.0rc1' https://github.com/namecoin/namecoin-core
+#	RUN git clone --depth 1 --branch 'nc0.13.0rc1' https://github.com/namecoin/namecoin-core
 workdir /tmp/build/namecoin-core
 	RUN ./autogen.sh && \
 		./configure --without-gui && \
