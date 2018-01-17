@@ -27,15 +27,15 @@ workdir /tmp/build/bdb
 		ln -s /usr/include/db4.8/include/* /usr/include && \
 		ln -s /usr/include/db4.8/lib/* /usr/lib
 workdir /tmp/build/
-	RUN git clone --depth 1 --branch 'v0.12.0' https://github.com/namecoin/namecoin-core
+	RUN git clone --branch 'nc0.13.0rc1' https://github.com/namecoin/namecoin-core
 workdir /tmp/build/namecoin-core
 	RUN ./autogen.sh && \
 		./configure --without-gui && \
 		make && \
 		make install
 VOLUME ["/data/namecoin"]
-RUN echo "rpcuser=test\nrpcpassword=test\n" > /data/namecoin/namecoin.conf
-#RUN echo "rpcuser=test\nrpcpassword=test\n" > ~/.namecoin/namecoin.conf
+#RUN printf "rpcuser=test\nrpcpassword=test\n" > /data/namecoin/namecoin.conf
+RUN printf "rpcuser=test\nrpcpassword=test\n" > ~/.namecoin/namecoin.conf
 #COPY namecoin.conf /data/namecoin/namecoin.conf
 EXPOSE 8336 8334
-CMD ["/usr/local/bin/namecoind", "regtest","-datadir=/data/namecoin", "-printtoconsole"]
+CMD ["/usr/local/bin/namecoind", "regtest", "-printtoconsole"]
