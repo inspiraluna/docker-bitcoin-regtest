@@ -1,17 +1,3 @@
-#FROM ubuntu:xenial
-#RUN apt-get -y update
-#RUN apt-get install -y python-software-properties
-#RUN apt-get install -y software-properties-common
-
-#RUN add-apt-repository ppa:bitcoin/bitcoin
-#RUN apt-get update
-#RUN apt-get install -y bitcoind
-
-#RUN mkdir ~/.bitcoin
-#RUN echo "rpcuser=test\nrpcpassword=test\n" > ~/.bitcoin/bitcoin.conf
-
-#RUN echo "alias rt='bitcoin-cli -regtest'" >> ~/.bashrc
-
 from ubuntu
 RUN apt-get update && \
 	apt-get upgrade -y && \
@@ -19,7 +5,9 @@ RUN apt-get update && \
 	apt-get install automake -y && \
 	apt-get install libtool -y && \
 	apt-get install libtool pkg-config wget -y && \
+	apt-get install net-tools && \
 	apt-get install bsdmainutils libboost-all-dev libssl-dev libevent-dev -y
+
 workdir /tmp/build/bdb
 	RUN wget http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz && tar xzvf db-4.8.30.NC.tar.gz && cd db-4.8.30.NC/build_unix/ && ../dist/configure --enable-cxx && make && make install && \
 		ln -s /usr/local/BerkeleyDB.4.8 /usr/include/db4.8 && \
@@ -38,5 +26,5 @@ RUN  mkdir ~/.namecoin/
 #RUN printf "rpcuser=test\nrpcpassword=test\n" > /data/namecoin/namecoin.conf
 RUN printf "rpcuser=test\nrpcpassword=test\n" > ~/.namecoin/namecoin.conf
 #COPY namecoin.conf /data/namecoin/namecoin.conf
-EXPOSE 18445 18444
+EXPOSE 18445 19445 18332 19332 
 CMD ["/usr/local/bin/namecoind", "regtest", "-printtoconsole"]

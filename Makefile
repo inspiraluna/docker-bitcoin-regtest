@@ -1,10 +1,11 @@
 DOCKER_RUN=sudo docker run -t
-DOCKER_ALICE=$(DOCKER_RUN) -p 18445:18445 --name=alice --hostname=alice
-DOCKER_BOB  =$(DOCKER_RUN) -p 19445:18445 --name=bob --hostname=bob
+DOCKER_ALICE=$(DOCKER_RUN) -p 18445:18445 -p 18332:18332 --name=alice --hostname=alice
+DOCKER_BOB  =$(DOCKER_RUN) -p 19445:18445 -p 19332:18332 --name=bob --hostname=bob
 
 IMG=inspiraluna/namecoin-regtest
+RUN_DAEMON=namecoind -regtest -rpcallowip=0.0.0.0/0 -rpcbind=18332 -daemon -printtoconsole 
 
-RUN_DAEMON=namecoind -regtest -rpcallowip=0.0.0.0/0 -printtoconsole
+#namecoind -regtest -rpcallowip=0.0.0.0/0 -rpcbind=18332 -rpcuser=test -rpcpassword=test -daemon -server -printtoconsole
 RUN_SHELL=bash
 
 build:
