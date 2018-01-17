@@ -38,5 +38,5 @@ RUN  mkdir ~/.namecoin/
 #RUN printf "rpcuser=test\nrpcpassword=test\n" > /data/namecoin/namecoin.conf
 RUN printf "rpcuser=test\nrpcpassword=test\n" > ~/.namecoin/namecoin.conf
 #COPY namecoin.conf /data/namecoin/namecoin.conf
-EXPOSE 8336 8334
+EXPOSE 18445 18444
 CMD ["/usr/local/bin/namecoind", "regtest", "-printtoconsole"]

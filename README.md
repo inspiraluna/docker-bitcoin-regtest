@@ -8,4 +8,6 @@ some commands described in the post are different in actually
 3. getpeerinfo command ``namecoin-cli -regtest getpeerinfo``
 4. addnode command (for alice) ``namecoin-cli -regtest addnode 172.17.0.2 onetry``
 5. getbalance command ``namecoin-cli -regtest addnode 172.17.0.2 onetry``
-6. generatetoaddress command ``namecoin-cli -regtest generatetoaddress 100 mtD1BjdHWhuRxqAXpLFpZZ8oysn3pdxjq6``
+6. getaccountaddress command ``namecoin-cli -regtest getaccountaddress ""``
+7. generatetoaddress command ``namecoin-cli -regtest generatetoaddress 100 mgrGgK3gDCJp8osBUSPPC1ktRuKnxEBg93``
+8. sendtoaddress command ``namecoin-cli -regtest sendtoaddress ...``
