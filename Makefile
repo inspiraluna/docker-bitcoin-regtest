@@ -1,6 +1,6 @@
 DOCKER_RUN=sudo docker run -t
-DOCKER_ALICE=$(DOCKER_RUN) -p 18444:18444 -p 18332:18332 --name=alice --hostname=alice
-DOCKER_BOB  =$(DOCKER_RUN) -p 19444:18444 -p 19332:18332 --name=bob --hostname=bob
+DOCKER_ALICE=$(DOCKER_RUN) -p 18445:18445 --name=alice --hostname=alice
+DOCKER_BOB  =$(DOCKER_RUN) -p 19445:18445 --name=bob --hostname=bob
 
 IMG=inspiraluna/namecoin-regtest
 

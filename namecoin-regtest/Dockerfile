@@ -12,7 +12,6 @@
 
 #RUN echo "alias rt='bitcoin-cli -regtest'" >> ~/.bashrc
 
-
 from ubuntu
 RUN apt-get update && \
 	apt-get upgrade -y && \
@@ -34,7 +33,8 @@ workdir /tmp/build/namecoin-core
 		./configure --without-gui && \
 		make && \
 		make install
-VOLUME ["/data/namecoin"]
+#VOLUME ["/data/namecoin"]
+RUN  mkdir ~/.namecoin/
 #RUN printf "rpcuser=test\nrpcpassword=test\n" > /data/namecoin/namecoin.conf
 RUN printf "rpcuser=test\nrpcpassword=test\n" > ~/.namecoin/namecoin.conf
 #COPY namecoin.conf /data/namecoin/namecoin.conf
