@@ -1,4 +1,6 @@
-This is a fork based which creates a namecoin regtest private testnet on your machine via docker. For details you can also read the original bitcoin based article by Gerald Kaszuba. (see http://geraldkaszuba.com/creating-your-own-experimental-bitcoin-network/) Beware some things might have changed in namecoin (see below)
+This is a fork of docker-bitcoin-regtest which creates a namecoin regtest private testnet on your machine via docker. 
+
+For details you can also read the original bitcoin based article by Gerald Kaszuba. (see http://geraldkaszuba.com/creating-your-own-experimental-bitcoin-network/) Beware some things might have changed in namecoin (see below)
 
 
 # usefull commands
