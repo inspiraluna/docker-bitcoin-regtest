@@ -1,6 +1,6 @@
 DOCKER_RUN=sudo docker run -t
 DOCKER_ALICE=$(DOCKER_RUN) -p 8338:8338 -p 8339:8339 --name=alice --hostname=alice
-DOCKER_BOB  =$(DOCKER_RUN) -p 18339:8338 -p 18339:8339 --name=bob --hostname=bob
+DOCKER_BOB  =$(DOCKER_RUN) -p 18338:8338 -p 18339:8339 --name=bob --hostname=bob
 
 IMG=inspiraluna/namecoin-testnet
 RUN_DAEMON=namecoind -rpcallowip=::/0 -daemon -port=8338 -rpcport=8339 -printtoconsole
