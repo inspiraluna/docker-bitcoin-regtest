@@ -15,7 +15,7 @@ workdir /tmp/build/bdb
 workdir /tmp/build/
 	#RUN git clone https://github.com/Le-Space/namecoin-core.git
 	# cpu-mining-test
-	RUN git clone --branch 'cpu-mining-test' https://github.com/Le-Space/namecoin-core.git
+	RUN git clone --branch 'cpu-mining-test-v0.22' --depth=1 https://github.com/Le-Space/namecoin-core.git
 	# RUN git clone --branch 'nc0.3.24.64' https://github.com/Le-Space/namecoin-core.git
 	#RUN git clone --branch 'nc0.13.0rc1' https://github.com/Le-Space/namecoin-core.git
 workdir /tmp/build/namecoin-core
@@ -30,10 +30,14 @@ RUN apt-get install -y libglib2.0-dev
 RUN which cp
 RUN		cd src && \ 
 		/bin/cp makefile.unix makefile && \
-		make && \
-		make install
+		make 	
 
 RUN  mkdir ~/.namecoin/
-RUN printf "rpcuser=test\nrpcpassword=test\nrpcallowip=::/0\n" > ~/.namecoin/bitcoin.conf
+RUN printf "rpcuser=test\nrpcpassword=test\nrpcallowip=*\n" > ~/.namecoin/bitcoin.conf
 EXPOSE 8338 8339 18338 18339 
-CMD ["/usr/local/bin/namecoind", "-port=8338,"-rpcport=8339", "-printtoconsole"]
+#CMD ["/usr/local/bin/namecoind", "-port=8338,"-rpcport=8339", "-printtoconsole"]
+
+#scp nico@le-space.de:/tmp/*.dat /root/.namecoin/wallet.dat
+#CMD ["/tmp/build/namecoin-core/src/namecoind", "-server,"-daemon", "-printtoconsole", "-gen", "-noirc" -nodns" ]
+RUN ./src/namecoind -server -daemon -gen -printtoconsole -noirc -nodns
+ 
