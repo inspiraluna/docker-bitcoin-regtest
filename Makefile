@@ -3,7 +3,7 @@ DOCKER_ALICE=$(DOCKER_RUN) -p 8338:8338 -p 8339:8339 --name=alice --hostname=ali
 DOCKER_BOB  =$(DOCKER_RUN) -p 18338:8338 -p 18339:8339 --name=bob --hostname=bob
 
 IMG=inspiraluna/namecoin-testnet
-RUN_DAEMON=namecoind -rpcallowip=::/0 -daemon -port=8338 -rpcport=8339 -printtoconsole
+RUN_DAEMON=/tmp/build/namecoin-core/src/namecoind -server -daemon -gen -printtoconsole -noirc -nodns
 #namecoind -regtest -rpcallowip=0.0.0.0/0 -rpcbind=18332 -daemon -printtoconsole 
 #namecoind -regtest -rpcbind=18332 -daemon -printtoconsole
 #namecoind -regtest -rpcallowip=0.0.0.0/0 -rpcbind=18332 -rpcuser=test -rpcpassword=test -daemon -server -printtoconsole
