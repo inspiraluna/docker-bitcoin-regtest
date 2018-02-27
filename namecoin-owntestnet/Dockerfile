@@ -15,7 +15,7 @@ workdir /tmp/build/bdb
 workdir /tmp/build/
 	#RUN git clone https://github.com/Le-Space/namecoin-core.git
 	# cpu-mining-test
-	RUN git clone --branch 'cpu-mining-test-v0.22' --depth=1 https://github.com/Le-Space/namecoin-core.git
+	RUN git clone --branch 'cpu-mining-test-v0.23' --depth=1 https://github.com/Le-Space/namecoin-core.git
 	# RUN git clone --branch 'nc0.3.24.64' https://github.com/Le-Space/namecoin-core.git
 	#RUN git clone --branch 'nc0.13.0rc1' https://github.com/Le-Space/namecoin-core.git
 workdir /tmp/build/namecoin-core
