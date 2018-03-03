@@ -13,29 +13,16 @@ workdir /tmp/build/bdb
 		ln -s /usr/include/db4.8/include/* /usr/include && \
 		ln -s /usr/include/db4.8/lib/* /usr/lib
 workdir /tmp/build/
-	RUN git clone --branch 'doichain' --depth=1 https://github.com/Le-Space/namecoin-core.git
-	# RUN git clone --branch 'nc0.3.24.64' https://github.com/Le-Space/namecoin-core.git
-	#RUN git clone --branch 'nc0.13.0rc1' https://github.com/Le-Space/namecoin-core.git
+	RUN git clone --branch 'doichain' https://github.com/namecoin/namecoin-core
 workdir /tmp/build/namecoin-core
-#	RUN ./autogen.sh && \
-#		./configure --without-gui && \
-#		make && \
-#		make install
-
-RUN apt-get install -y libglib2.0-dev 
-
-# make for early branch nc0.3.24.64
-RUN which cp
-RUN		cd src && \ 
-		/bin/cp makefile.unix makefile && \
-		make 	
-
+	RUN ./autogen.sh && \
+		./configure --without-gui && \
+		make && \
+		make install
 RUN  mkdir ~/.namecoin/
-RUN printf "rpcuser=test\nrpcpassword=test\nrpcallowip=*\n" > ~/.namecoin/bitcoin.conf
+RUN printf "rpcuser=test\nrpcpassword=test\nrpcallowip=0.0.0.0\n" > ~/.namecoin/namecoin.conf
 EXPOSE 8338 8339 18338 18339 
-#CMD ["/usr/local/bin/namecoind", "-port=8338,"-rpcport=8339", "-printtoconsole"]
-
-#scp nico@le-space.de:/tmp/*.dat /root/.namecoin/wallet.dat
+CMD ["/usr/local/bin/namecoind", "-printtoconsole"]
 #CMD ["/tmp/build/namecoin-core/src/namecoind", "-server,"-daemon", "-printtoconsole", "-gen", "-noirc" -nodns" ]
-RUN ./src/namecoind -server -daemon -gen -printtoconsole -noirc -nodns
+#RUN ./src/namecoind -server -daemon -gen -printtoconsole -noirc -nodns
  
