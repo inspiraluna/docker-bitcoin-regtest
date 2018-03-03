@@ -13,7 +13,7 @@ workdir /tmp/build/bdb
 		ln -s /usr/include/db4.8/include/* /usr/include && \
 		ln -s /usr/include/db4.8/lib/* /usr/lib
 workdir /tmp/build/
-	RUN git clone --branch 'dc0.0.2' https://github.com/Le-Space/namecoin-core.git
+	RUN git clone --branch 'doichain' https://github.com/Le-Space/namecoin-core.git
 workdir /tmp/build/namecoin-core
 	RUN ./autogen.sh && \
 		./configure --without-gui && \
