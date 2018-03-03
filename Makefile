@@ -2,7 +2,7 @@ DOCKER_RUN=sudo docker run -t
 DOCKER_ALICE=$(DOCKER_RUN) -p 8338:8338 -p 8339:8339 --name=alice --hostname=alice
 DOCKER_BOB  =$(DOCKER_RUN) -p 18338:8338 -p 18339:8339 --name=bob --hostname=bob
 
-IMG=inspiraluna/namecoin-testnet
+IMG=inspiraluna/doichain
 RUN_DAEMON=/tmp/build/namecoin-core/src/namecoind -server -daemon -gen -printtoconsole -noirc -nodns
 #namecoind -regtest -rpcallowip=0.0.0.0/0 -rpcbind=18332 -daemon -printtoconsole 
 #namecoind -regtest -rpcbind=18332 -daemon -printtoconsole
@@ -10,7 +10,7 @@ RUN_DAEMON=/tmp/build/namecoin-core/src/namecoind -server -daemon -gen -printtoc
 RUN_SHELL=bash
 
 build:
-	sudo docker build -t $(IMG) namecoin-owntestnet
+	sudo docker build -t $(IMG) doichain
 
 alice_rm:
 	-sudo docker rm -f alice
