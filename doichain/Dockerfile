@@ -13,14 +13,14 @@ workdir /tmp/build/bdb
 		ln -s /usr/include/db4.8/include/* /usr/include && \
 		ln -s /usr/include/db4.8/lib/* /usr/lib
 workdir /tmp/build/
-	RUN git clone --branch 'dc0.0.5' https://github.com/Le-Space/namecoin-core.git
+	RUN git clone --branch 'dc0.0.7' https://github.com/Le-Space/namecoin-core.git
 workdir /tmp/build/namecoin-core
 	RUN ./autogen.sh && \
 		./configure --without-gui && \
 		make && \
 		make install
 RUN  mkdir ~/.namecoin/
-RUN printf "rpcuser=test\nrpcpassword=test\nrpcallowip=::/0\n" > ~/.namecoin/namecoin.conf
+RUN printf "rpcuser=test\nrpcpassword=test\nrpcallowip=::/0\nserver=1\n" > ~/.namecoin/namecoin.conf
 EXPOSE 8338 8339 18338 18339 
 CMD ["/usr/local/bin/namecoind", "-printtoconsole"]
 #CMD ["/tmp/build/namecoin-core/src/namecoind", "-server,"-daemon", "-printtoconsole", "-gen", "-noirc" -nodns" ]
