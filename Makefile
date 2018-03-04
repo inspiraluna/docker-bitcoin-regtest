@@ -1,6 +1,6 @@
 DOCKER_RUN=sudo docker run -t
-DOCKER_ALICE=$(DOCKER_RUN) -p 8336:8336 -p 8334:8334 --name=alice-mainnet --hostname=alice-mainnet
-DOCKER_BOB  =$(DOCKER_RUN) -p 18336:8336 -p 18334:8334 --name=bob-mainnet --hostname=bob-mainnet
+DOCKER_ALICE=$(DOCKER_RUN) -v /data/namecoin:/data/namecoin  -p 8336:8336 -p 8334:8334 --name=alice-mainnet --hostname=alice-mainnet
+DOCKER_BOB  =$(DOCKER_RUN) -v /data/namecoin2 -p 18336:8336 -p 18334:8334 --name=bob-mainnet --hostname=bob-mainnet
 
 IMG=inspiraluna/namecoin
 RUN_DAEMON=namecoind -rpcallowip=::/0 -daemon -server -printtoconsole

@@ -19,6 +19,9 @@ workdir /tmp/build/namecoin-core
 		./configure --without-gui && \
 		make && \
 		make install
-RUN  mkdir ~/.namecoin/
-RUN printf "rpcuser=test\nrpcpassword=test\nrpcallowip=::/0\nserver=1\n" > ~/.namecoin/namecoin.conf
-CMD ["/usr/local/bin/namecoind", "-printtoconsole"]
+RUN mkdir -p /data/namecoin/
+RUN if test ! -f /data/namecoin/namecoin.conf; then printf "rpcuser=test\nrpcpassword=test\nrpcallowip=::/0\nserver=1\n" > /data/namecoin/namecoin.conf; fi
+RUN ln -s /data/namecoin ~/.namecoin
+#VOLUME ["/data/namecoin"] #ignored when it conflicts with -v
+EXPOSE 8336 8334
+CMD ["/usr/local/bin/namecoind", "-server", "-daemon"] #only excecuted when running without param 
