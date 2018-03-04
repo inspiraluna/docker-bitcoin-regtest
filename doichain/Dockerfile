@@ -20,7 +20,7 @@ workdir /tmp/build/namecoin-core
 		make && \
 		make install
 RUN  mkdir ~/.namecoin/
-RUN printf "rpcuser=test\nrpcpassword=test\nrpcallowip=0.0.0.0/0\n" > ~/.namecoin/namecoin.conf
+RUN printf "rpcuser=test\nrpcpassword=test\nrpcallowip=::/0\n" > ~/.namecoin/namecoin.conf
 EXPOSE 8338 8339 18338 18339 
 CMD ["/usr/local/bin/namecoind", "-printtoconsole"]
 #CMD ["/tmp/build/namecoin-core/src/namecoind", "-server,"-daemon", "-printtoconsole", "-gen", "-noirc" -nodns" ]
