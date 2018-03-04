@@ -13,12 +13,12 @@ workdir /tmp/build/bdb
 		ln -s /usr/include/db4.8/include/* /usr/include && \
 		ln -s /usr/include/db4.8/lib/* /usr/lib
 workdir /tmp/build/
-	RUN git clone --branch 'nc0.13.0rc1' https://github.com/namecoin/namecoin-core
+	RUN git clone --branch 'nc0.15.99-name-tab-beta2' https://github.com/namecoin/namecoin-core
 workdir /tmp/build/namecoin-core
 	RUN ./autogen.sh && \
 		./configure --without-gui && \
 		make && \
 		make install
 RUN  mkdir ~/.namecoin/
-RUN printf "rpcuser=test\nrpcpassword=test\nrpcallowip=0.0.0.0\n" > ~/.namecoin/namecoin.conf
-CMD ["/usr/local/bin/namecoind", "regtest", "-printtoconsole"]
+RUN printf "rpcuser=test\nrpcpassword=test\nrpcallowip=0.0.0.0\nserver=1\n" > ~/.namecoin/namecoin.conf
+CMD ["/usr/local/bin/namecoind", "-printtoconsole"]
