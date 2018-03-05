@@ -1,12 +1,9 @@
 DOCKER_RUN=sudo docker run -t
-DOCKER_ALICE=$(DOCKER_RUN) -p 8338:8338 -p 8339:8339 --name=alice --hostname=alice
-DOCKER_BOB  =$(DOCKER_RUN) -p 18338:8338 -p 18339:8339 --name=bob --hostname=bob
+DOCKER_ALICE=$(DOCKER_RUN) -v /data/doichain:/data/doichain -p 8338:8338 -p 8339:8339 --name=alice-doichain --hostname=alice-doichain
+DOCKER_BOB  =$(DOCKER_RUN) -v /data/doichain:/data/doichain -p 18338:8338 -p 18339:8339 --name=bob-doichain --hostname=bob-doichain
 
 IMG=inspiraluna/doichain
 RUN_DAEMON=/tmp/build/namecoin-core/src/namecoind -server -daemon -gen -printtoconsole -noirc -nodns
-#namecoind -regtest -rpcallowip=0.0.0.0/0 -rpcbind=18332 -daemon -printtoconsole 
-#namecoind -regtest -rpcbind=18332 -daemon -printtoconsole
-#namecoind -regtest -rpcallowip=0.0.0.0/0 -rpcbind=18332 -rpcuser=test -rpcpassword=test -daemon -server -printtoconsole
 RUN_SHELL=bash
 
 build:

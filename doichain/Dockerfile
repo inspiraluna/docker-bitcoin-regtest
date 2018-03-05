@@ -19,10 +19,10 @@ workdir /tmp/build/namecoin-core
 		./configure --without-gui && \
 		make && \
 		make install
-RUN  mkdir ~/.namecoin/
-RUN printf "rpcuser=test\nrpcpassword=test\nrpcallowip=::/0\nserver=1\n" > ~/.namecoin/namecoin.conf
+
+RUN mkdir -p /data/doichain/
+RUN if test ! -f /data/doichain/namecoin.conf; then printf "rpcuser=test\nrpcpassword=test\nrpcallowip=::/0\nserver=1\n" > /data/doichain/namecoin.conf; fi
+RUN ln -s /data/doichain ~/.namecoin
+VOLUME ["/data/doichain"] #ignored when it conflicts with -v
 EXPOSE 8338 8339 18338 18339 
-CMD ["/usr/local/bin/namecoind", "-printtoconsole"]
-#CMD ["/tmp/build/namecoin-core/src/namecoind", "-server,"-daemon", "-printtoconsole", "-gen", "-noirc" -nodns" ]
-#RUN ./src/namecoind -server -daemon -gen -printtoconsole -noirc -nodns
- 
+CMD ["/usr/local/bin/namecoind", "-server", "-daemon"] #only excecuted when running without param 
